@@ -1,0 +1,13 @@
+{% if comments %}
+{% for comment in comments %} 
+<div class="blog_comment">
+<p><b>{{ comment.name }}</b> - {{ comment.date_added }}</p>
+<p>{{ comment.comment }}</p>
+</div>
+{% endfor %} 
+<div class="text-right">{{ pagination }}</div>
+{% else %}   
+<div class="blog_comment">
+<p>{{ text_no_comment }}</p>
+</div>
+{% endif %}

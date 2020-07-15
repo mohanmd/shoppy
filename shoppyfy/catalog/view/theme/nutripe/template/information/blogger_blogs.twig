@@ -1,0 +1,86 @@
+{{ header }} 
+<div class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %} 
+   <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+ {% endfor %}  
+     
+  </ul>
+  <div class="row">{{ column_left }} 
+     {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+   
+    <div id="content" class="{{ class }}">{{ content_top }} 
+      <div class="blog all-blogs">
+	  <!--<h1>{{ text_blogs }}</h1>-->
+      {% if blogs %} 
+      {% for blog in blogs %} 
+      <div class="blog_grid_holder">
+        <h2 class="page-title">{{ blog.name }}</h2>
+        {% if blog.blog_data %} 
+        {% for topic in blog.blog_data %} 
+        <div class="blog_item">
+
+         
+          <div class="summary">
+		  
+		  
+		  <div class="blog-desc">
+	   <div class="blog-created">
+	         
+			  
+            <h2 class="blog_title"><a href="{{ topic.href }}">{{ topic.title }}</a></h2>
+			<span class="calendar"> <i class="fa fa-calendar"></i>  {{ topic.date_added }}</span>
+              <span class="comment"> <a href="{{ topic.href }}"><i class="fa fa-comments"></i> {{ topic.total_comments }} {{ entry_comment }}</a> </span></div>
+
+            <!--<span> <a href="{{ topic.href }}"> <i class="fa fa-long-arrow-right"></i> {{ text_read_more }}</a> </span>-->
+            
+            <p>{{ topic.description [0:150] }}</p> {# will display "200" #}
+			 
+           
+       </div>
+
+         {% if topic.image %} 
+         <div class="blog-left-content">
+		  <div class="blog-left-cont">
+        <div class="image">
+          <img src="{{ topic.image }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" />
+
+         <div class="blog-icon">
+            <p class="post_hover"><a class="icon zoom" title="Click to view Full Image " href="{{ topic.image }}" data-lightbox="example-set"><i class="fa fa-search"></i> </a></p>
+         </div>
+          </div>
+        </div>
+		</div>
+        {% endif %}
+
+            <p  class="readmore-btn"><a href="{{ topic.href }}">{{ text_read_more }}</a> </p>
+       
+   
+          </div>
+       
+		 </div>
+        {% endfor %}
+        
+         {% else %}   
+        <div class="panel-body text-center">{{ text_no_blogs }}</div>
+        {% endif %} 
+        </div>
+         {% endfor %}
+       {% else %}   
+
+
+      <div class="panel-body text-center">{{ text_no_blogs }}</div>
+               {% endif %} 
+
+
+    {{ content_bottom }}</div>
+  {{ column_right }}</div>
+</div>
+</div>
+{{ footer }} 

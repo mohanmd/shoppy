@@ -1,0 +1,273 @@
+
+/* display none until init */
+.product-carousel{
+	display: none;
+	opacity:1!important;
+	position: relative;
+	width: 100%;
+	-ms-touch-action: pan-y;
+}
+#column-left .product-carousel, #column-right .product-carousel { display:block;}
+#column-left .box.product-box .customNavigation a, #column-right .box.product-box .customNavigation a { display:none;
+     
+}
+#column-left .banners-slider-carousel .customNavigation,
+#column-right .banners-slider-carousel .customNavigation{ display:block;}
+
+.product-carousel .slider-wrapper{
+	display: none;
+	position: relative;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	-webkit-perspective: 1000;
+}
+.product-carousel .slider-wrapper-outer{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin: 0 0 0;
+}
+
+.banners-slider-carousel .slider-wrapper-outer {
+    text-align: center;
+}
+.product-carousel .slider-wrapper-outer.autoHeight{
+	-webkit-transition: height 500ms ease-in-out;
+	-moz-transition: height 500ms ease-in-out;
+	-ms-transition: height 500ms ease-in-out;
+	-o-transition: height 500ms ease-in-out;
+	transition: height 500ms ease-in-out;
+}
+	
+.product-carousel .slider-item{
+	float: left;
+}
+.slider-controls .slider-page,
+.slider-controls .slider-buttons div{
+	cursor: pointer;
+}
+.slider-controls {
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* mouse grab icon */
+ 
+
+
+
+/* fix */
+.product-carousel  .slider-wrapper,
+.product-carousel  .slider-item{
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility:    hidden;
+	-ms-backface-visibility:     hidden;
+}
+.product-image .customNavigation a.prev {left:0; color:#000000; width:20px;}
+.product-image .customNavigation a.next {right:0; color:#000000; width:20px;}
+.product-image  .customNavigation a {top:40px;}
+
+.customNavigation,.owl-buttons    { 
+    position: static;
+   
+}
+
+.customNavigation a,.owl-buttons div{
+		display: block;
+		cursor: pointer;
+		z-index: 1;
+		margin: 0;
+		width: 35px;
+		height: 35px;
+		padding: 0;
+		font-size: 0;
+		line-height: 0;
+		color: #dddddd;
+		background-size: 19px !important;
+		background-repeat: no-repeat;
+		position: absolute;
+		right: auto;
+		left: auto;
+		 top: 65px;
+		bottom: auto;
+		background-color: #ffffff;
+		border:1px solid #dddddd;
+		
+		border-radius: 50px;
+		-webkit-border-radius: 50px;
+		-khtml-border-radius: 50px;
+		-moz-border-radius: 50px;
+}
+.customNavigation a:hover,.owl-buttons div:hover{border-color:#cc3528;}
+
+.customNavigation a.prev,.owl-buttons .owl-prev  {
+    background-image: url(../../image/themeimage/pst-prod-prev.svg);
+        left: 0;
+      background-position: center;
+
+}
+ 
+.customNavigation a.prev:hover,.owl-buttons .owl-prev:hover {
+    background-image: url(../../image/themeimage/pst-prod-prev-hover.svg);
+} 
+
+.customNavigation a.next,.owl-buttons .owl-next {
+    background-image: url(../../image/themeimage/pst-prod-next.svg);
+      background-position: center;
+	  right:0;
+}
+
+.customNavigation a.next:hover,.owl-buttons .owl-next:hover {
+    background-image: url(../../image/themeimage/pst-prod-next-hover.svg);
+}
+
+
+.owl-buttons , .customNavigation {
+     z-index: 1;
+}
+ 
+
+.special-product-block .owl-buttons {
+    top: 15px;
+    right: 35px;
+}
+
+
+
+
+
+.banners-slider-carousel .customNavigation {
+    position: static;
+}
+ 
+ #psttestimonialcmsblock ..owl-buttons div {
+    top: 39%;
+}
+.banners-slider-carousel .customNavigation a,  #psttestimonialcmsblock .owl-buttons div{
+    position: absolute;
+   top: 40%;
+    bottom: auto;
+    
+   
+}
+
+
+#homeblog .owl-buttons div{  position: static;
+    float: left;
+    margin-right: 5px;}
+#homeblog .owl-buttons {   
+    position: absolute;
+    right: auto;
+    left: 0;
+    top: auto;
+    bottom:25%;}
+
+
+.customNavigation .fa-angle-right:before,.owl-buttons .fa-angle-right:before,.customNavigation .fa-angle-left:before,.owl-buttons.fa-angle-left:before,.customNavigation .fa-angle-double-left:before,.customNavigation .fa-angle-double-right:before,.category_tab .tab-pane .owl-buttons a.fa{
+    display: none;
+}
+
+ 
+
+.product-info .product-image .customNavigation    { 
+	text-align: center;
+	width:100%;
+	z-index:9;
+	position: static;
+	opacity: 1;
+	-webkit-opacity:1;
+	-moz-opacity: 1;
+	-ms-opacity: 1;
+	-o-opacity:1;
+	}
+.product-info .product-image .customNavigation a{
+	-webkit-tap-highlight-color: transparent;
+	display: block;
+    float: right;
+    height: 20px;
+    position: absolute;
+    top: -34px;
+    width: 16px;
+}
+
+.product-info .product-image .customNavigation span.prev {
+     color: #ffffff;
+    cursor: pointer;
+    font-size: 9px;
+    left: 0;
+    position: absolute;
+    top: 40%;
+    z-index: 1;
+    background-color: #e3706b;
+    width: 22px;
+    height: 22px;
+    line-height: 21px;
+}
+.product-info .product-image .customNavigation span.prev:hover { background-color: #333333; text-decoration: none;}
+.product-info .product-image .customNavigation span.next {
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 10px;
+    right: 0;
+    position: absolute;
+    top: 40%;
+    z-index: 1;
+    background-color: #e3706b;
+    width: 22px;
+    height: 22px;
+    line-height: 21px;
+    padding-left: 5px;
+}
+.product-info .product-image .customNavigation span.next:hover {background-color: #333333;text-decoration:none;}
+ 
+@media (min-width:980px) {
+.banners-slider-carousel .customNavigation a, .customNavigation a, .owl-buttons div{
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -moz-transform: scale(0);
+    transition-duration: 300ms;
+    -webkit-transition-duration: 300ms;
+    -moz-transition-duration: 300ms;
+    -ms-transition-duration: 300ms;
+    -o-transition-duration: 300ms;
+}
+
+.banners-slider-carousel:hover .customNavigation a, .box.product-box:hover .customNavigation a, .box.product-box:hover  .owl-buttons div, #psttestimonialcmsblock:hover  .owl-buttons div, #homeblog:hover .owl-buttons div{
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -ms-transform:scale(1);
+    -o-transform:scale(1);
+    -moz-transform:scale(1);
+    transition-duration: 300ms;
+    -webkit-transition-duration:300ms;
+    -moz-transition-duration: 300ms;
+    -ms-transition-duration: 300ms;
+    -o-transition-duration:300ms;
+}
+}
+
+
+@media only screen and (min-width: 1299px) and (max-width: 1348px) {
+
+#homeblog .owl-buttons{top:auto;
+    bottom: 19%;}
+}
+@media (max-width:979px) {
+
+#homeblog .owl-buttons div {
+    position: absolute;
+    float: none;
+    margin-right: 0;
+    top: 0;
+}
+#homeblog .owl-buttons {
+    position: static;}
+}
+@media (max-width:479px) {
+.customNavigation a, .owl-buttons div{    width: 30px;
+    height: 30px;     background-size: 14px !important;}
+.customNavigation a, .owl-buttons div{top:3px; bottom:auto;}
+#psttestimonialcmsblock .owl-buttons div {
+    position: absolute;
+    top: 12%;
+}

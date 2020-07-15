@@ -1,0 +1,11 @@
+<div class="box">
+  <div class="box-heading">{{ heading_title }}</div>
+	<div class="list-group">
+			{% for information in informations %}
+					<a class="list-group-item" href="{{ information.href }}">{{ information.title }} </a>
+			{% endfor %}
+				<a class="list-group-item" href="{{ contact }}">{{ text_contact }} </a>
+	
+				<a class="list-group-item" href="{{ sitemap }}">{{ text_sitemap }} </a>
+	</div>
+</div>

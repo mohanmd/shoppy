@@ -1,0 +1,26 @@
+<div class="main-slider mainslider{{ module }}">
+<div id="spinner" class="spinner{{ module }}"></div>
+<div class="viewport">
+  <div id="slideshow{{ module }}" class="flexslider" style="opacity: 1;">
+    <ul class="slides"> 
+	{% for banner in banners %}
+      <li class="slide text-center">{% if banner.link %}<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />{% endif %}</li>
+      {% endfor %} </ul>
+  </div>
+ <!-- <div class="pagination slideshow{{ module }}"></div>-->
+  <div class="pager">
+    <div class="button-prev">{{ text_prev }}</div>
+    <div class="button-next">{{ text_next }}</div>
+	   
+  </div>
+</div>
+</div>
+
+
+
+<script type="text/javascript">
+// Can also be used with $(document).ready()
+$(window).load(function() {	
+  $(".spinner{{ module }}").fadeOut("slow");
+});	
+</script>

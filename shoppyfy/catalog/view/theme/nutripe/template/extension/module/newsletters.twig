@@ -1,0 +1,69 @@
+<script>
+		function subscribe()
+		{
+			var emailpattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var email = $('#txtemail').val();
+			if(email != "")
+			{
+				if(!emailpattern.test(email))
+				{
+					$('.text-danger').remove();
+					var str = '<span class="error">Invalid Email</span>';
+					$('.form-group').after('<div class="text-danger">Invalid Email</div>');
+
+					return false;
+				}
+				else
+				{
+					$.ajax({
+						url: 'index.php?route=extension/module/newsletters/news',
+						type: 'post',
+						data: 'email=' + $('#txtemail').val(),
+						dataType: 'json',
+						
+									
+						success: function(json) {
+						
+						$('.text-danger').remove();
+						$('.form-group').after('<div class="text-danger">' + json.message + '</div>');
+						
+						}
+						
+					});
+					return false;
+				}
+			}
+			else
+			{
+				$('.text-danger').remove();
+				$('.form-group').after('<div class="text-danger">Email Is Require</div>');
+				$(email).focus();
+
+				return false;
+			}
+			
+
+		}
+	</script>
+<div class="newsletter">
+	  <div class="newsletter-wrapper">
+			<div class="newsletter-info">
+	            <span class="newsletter-title">{{ heading_title }}</span>
+				<span class="newsletter-desc">{{newsletter_info}}</span>
+			</div>
+	        <div class="newsletter-block">
+			<form method="post">
+				<div class="form-group required">
+					<label class="col-sm-2 control-label" for="txtemail">{{ entry_email }}</label>
+					<div class="input-news">
+					  <input type="email" name="txtemail" id="txtemail" value="" placeholder="{{ entry_email }}" class="form-control input-lg"  /> 
+					    <button type="submit" class="btn btn-default btn-lg subscribe-btn" onclick="return subscribe();">{{ email_button }} </button>  
+					</div>
+					 
+				</div>
+			</form>
+	        </div>
+
+      </div>
+</div>
+

@@ -1,0 +1,77 @@
+<div id="main-menu" class="main-menu">
+<nav class="nav-container" role="navigation">
+<div class="nav-inner">
+<!-- ======= Menu Code START ========= -->
+{% if categories %}
+<!-- Opencart 3 level Category Menu-->
+<div id="menu" class="main-menu">
+<div class="nav-responsive"><span>Menu</span><div class="expandable"></div></div>
+ 
+      <ul class="nav navbar-nav">
+	  	 <li class="top_level home"><a href="{{ home }}">{{ text_home }}</a></li>
+	  	 <li class="top_level" > <a href="{{ all_blogs }}">{{ text_blog }}</a></li>
+
+		{% for category in categories %}
+        {% if category.children %}
+			<li class="top_level dropdown"><a href="{{ category.href }}">{{ category.name }}</a>
+
+			<div class="dropdown-menu megamenu column{{ category.column }}">
+            <div class="dropdown-inner">
+			  {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+				<ul class="list-unstyled childs_1">
+                {% for child in children %}
+					<!-- 2 Level Sub Categories START -->
+					{% if child.childs %}
+					  <li class="dropdown"><a href="{{ child.href }}">{{ child.name }}</a>
+
+						  <div class="dropdown-menu">
+			              <div class="dropdown-inner">
+			              {% for childs_col in child.childs|batch(child.childs|length / child.column|round(1, 'ceil')) %}
+							<ul class="list-unstyled childs_2">
+							  {% for childs_2 in childs_col %}
+								<li><a href="{{ childs_2.href }}">{{ childs_2.name }}</a></li>
+							  {% endfor %}
+							  
+							</ul>
+						  {% endfor %}
+						  </div>
+						  </div>
+
+					  </li>
+					{% else %}
+					  <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+					{% endif %}
+					<!-- 2 Level Sub Categories END -->
+                {% endfor %}
+              
+			    </ul>
+              {% endfor %}
+            </div>
+			</div>
+
+			</li>
+			
+        {% else %}
+			<li class="top_level"><a href="{{ category.href }}">{{ category.name }}</a></li>
+       {% endif %}
+        {% endfor %}
+
+		
+		<!--<li class="level0" ><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+		<li class="level0" ><a href="{{ special }}">{{ text_special }}</a></li>
+		<li class="level0" ><a href="{{ contact }}">{{ text_contact }}</a></li> 
+		<li class="level0" ><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+		<li class="level0"><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+		<li class="level0" ><a href="{{ account }}">{{ text_account }}</a></li>
+		<li class="level0" ><a href="{{ voucher }}">{{ text_voucher }}</a></li>--> 
+  		</ul>
+  
+</div>
+{% endif %}
+
+</div>
+
+</nav> 
+
+</div>
+</nav>   

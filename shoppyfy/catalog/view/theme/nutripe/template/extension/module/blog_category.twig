@@ -1,0 +1,33 @@
+<div class="blog-module blog-category">
+<h3>{{ heading_title_category }}</h3>
+{% if categories %} 
+<ul class="list-unstyled">
+{% for category_1 in categories %}
+   {% if category_1.category_1_id == category_1_id %}
+     <li class="open active"><a href="{{ category_1.href }}" >{{ category_1.name }}</a>
+      {% else %}
+      <li><a href="{{ category_1.href }}" >{{ category_1.name }}</a> 
+      {% endif %}
+      {% if category_1.children %}
+      <div class="sign"><i class="fa fa-plus"></i><span class="fa fa-minus"></i></div>
+      <ul>
+      {% for category_2 in category_1.children %}
+      <li class="open active"><a href="{{ category_2.href }}"> <i class="fa fa-long-arrow-right"></i>{{ category_2.name }}</a></li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </li>
+{% endfor %}
+</ul> 
+{% endif %}
+</div>
+<script>        
+	$('.blog-category li').bind().click(function(e) {
+	$(this).toggleClass("open").find('>ul').stop(true, true).slideToggle(500)
+	.end().siblings().find('>ul').slideUp().parent().removeClass("open");
+	e.stopPropagation();
+	});
+	$('.blog-category li a').click(function(e) {
+	e.stopPropagation();
+	});
+</script>

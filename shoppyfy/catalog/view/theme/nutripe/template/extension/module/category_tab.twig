@@ -1,0 +1,198 @@
+<div id="Tab_Category_Slider" class="category_tab box">
+<div class="container category-tab-wrapper product-box-wrapper">
+	<div class="title-wrapper">
+		<div class="sub-title">{{ sub_title }}</div>
+		<div class="box-heading"> {{ categorytab_heading_title }} </div>
+	</div>
+	<div class="tabs">
+		<div class="etabs">
+		<ul class="nav nav-tabs">
+			{% set cnt = 0 %} 
+			{% for category in categories %}
+			{{ category.category_tab }}
+			{% endfor %}
+        </ul>
+        </div>
+        {% set sliderFor = 5 %}
+				{% set productCount = products|length %}
+				{% if productCount >= sliderFor %}
+					<!-- <div class="customNavigation">
+						<a class="fa prev">&nbsp;</a>
+						<a class="fa next">&nbsp;</a>
+					</div> -->	
+			{% endif %}
+			
+			
+				
+			
+		<div class="tab-content home-products">
+			
+			
+
+			{% for category in categories %}
+			{{ category.category_div }}
+			{% if category.category_id != category.target_category_id %}
+				<div id="tab_spinner"></div>
+			{% else %}
+			
+			
+			<div class="owl-carousel owl-demo-tabcate">
+		{% for product in products %}
+		<div class="product-block-wrapper">
+			
+				  <div class="item text-center product-innerblock">
+	  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="product-block product-thumb transition">
+	  <div class="product-block-inner">
+
+
+			<div class="image">
+				{% if product.thumb_swap %}
+				<a href="{{ product.href }}">
+				<img src="{{ product.thumb }}" title="{{ product.name }}" alt="{{ product.name }}" class="img-responsive reg-image"/>
+				<img class="img-responsive hover-image" src="{{ product.thumb_swap }}" title="{{ product.name }}" alt="{{ product.name }}"/>
+				</a>
+				{% else %}
+				<a href="{{ product.href }}">
+				<img src="{{ product.thumb }}" title="{{ product.name }}" alt="{{ product.name }}" class="img-responsive"/></a>
+				{% endif %}
+
+				{% if not product.special %}        
+				{% else %}
+				<div class="saleback">
+				<span class="saleicon sale">Sale</span>         
+				</div>
+				{% endif %}
+
+				
+				<div class="button-group">
+				  <button type="button" data-placement="right" title="{{ button_cart }}" class="addtocart" onclick="cart.add('{{ product.product_id }} ');">{{ button_cart }}</button>
+				    <div class="quickview" data-placement="right" title="{{ button_quickview }}" ><a href="{{ product.quick }}">Quick View</a></div>
+					<button class="wishlist" type="button" data-placement="right" title="{{ button_wishlist }} " onclick="wishlist.add('{{ product.product_id }} ');"></button>
+					<button class="compare" type="button" data-placement="right" title="{{ button_compare }} " onclick="compare.add('{{ product.product_id }} ');"></button>
+				</div>	
+
+
+			</div>
+										
+      	 <!-- <div class="product-details"> -->
+      	 	
+			<div class="caption">
+
+				 {# if product.rating #}
+						 <div class="rating">
+						 {% for i in 1..5 %}
+						 {% if product.rating < i %}
+						<span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
+						 {% else %}
+						 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+						 {% endif %}
+						 {% endfor %}
+						 </div>
+			    {# endif #}
+
+
+				<h4><a href="{{ product.href }} ">{{ product.name }} </a></h4>	
+				
+
+				{% if product.price %}
+        			<p class="price">
+       			    {% if not product.special %}
+          			{{ product.price }}
+         			{% else %}
+         			<span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+			        {% endif %}
+  		            {% if product.tax %}
+		            <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+          			{% endif %}	
+					{% if product.special %}
+					<span class="percentsaving">{{ product.percentsaving }}%</span>
+					{% endif %}				
+			        </p>
+	            {% endif %}
+
+	           
+	              				
+				{# <p class="desc">{{ product.description }}</p> #}
+	 	    	
+			</div>
+		
+	  	<!-- </div> -->
+  	</div>
+	</div>
+	  </div>
+	 </div>
+	  		
+			</div>
+				{% endfor %}
+	  		</div>
+			
+			
+			  {% endif %}
+				
+ 			</div>
+			{% endfor %}
+		
+		</div>  
+</div>
+</div>
+ 
+</div>
+
+
+<script type="text/javascript"><!--
+$('#Tab_Category_Slider .owl-demo-tabcate').owlCarousel({
+    items: 4,
+	navigation: true,
+	navigationText: ['<span class="left"><a class="fa prev fa-angle-left"></a></span>', '<span class="right"><a class="fa next fa-angle-right"></a></span>'],
+	pagination: false,
+	slideSpeed : 1000,
+	rewindSpeed : 800,
+	itemsCustom : [
+        [0, 1],
+        [479, 1],
+        [480, 2],
+        [788, 3],
+		[1200, 3],
+        [1300, 4],
+      ]
+	  
+  });
+function {{ rand_str }}loadAjaxData(category_id) {
+	var unavailabledates = {{ setting|json_encode() }};
+	var dataToSend = {'category_id' : category_id, 'setting' : unavailabledates } ;
+	$.ajax({
+		type: 'POST',
+		data: dataToSend,
+		url: '{{ HTTP_SERVER }}index.php?route=extension/module/category_tab/ajaxloaddata',
+		beforeSend: function() {
+		  $("#{{ rand_str }}").html('<div style="text-align:center;"></div>');
+		  //http://www.bigtravelsghana.com/img/images/ajax-loader.gif
+	   },
+		success: function (data) {
+			$('#Tab_Category_Slider').replaceWith(data);
+			$('#Tab_Category_Slider .owl-demo-tabcate').owlCarousel({
+				items: 4,
+				navigation: true,
+				navigationText: ['<span class="left"></span>', '<span class="right"></span>'],
+				pagination: false,
+				itemsCustom : [
+					[0, 1],
+					[479, 1],
+					[480, 2],
+					[788, 3],
+					[1200, 3],
+					[1300, 4],
+				 ]
+			});
+			//alert(data);
+		}
+	});
+}
+--></script>
+<script type="text/javascript">
+	// Can also be used with $(document).ready()
+	$(document).ready(function() {		
+	  $("#tab_spinner").fadeOut("slow");
+	});	
+</script>

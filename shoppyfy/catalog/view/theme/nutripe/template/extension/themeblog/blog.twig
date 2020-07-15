@@ -1,0 +1,263 @@
+{{ header }}
+<div class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %} 
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %} 
+  </ul>
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+    <div class="blog blog_post">
+    
+    {% if main_thumb  and  blogsetting_post_thumb %} 
+    <div class="main_thumb"><img src="{{ blogsetting_post_thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" /></div>
+    {% endif %} 
+    
+	<h1>{{ heading_title }}</h1>
+	<div class="blog_stats">
+	{% if post_author_status %}
+    <span><i class="fa fa-user"></i><b class="text">{{ text_posted_by }}</b> <b class="hl">{{ author }}</b></span>
+    {% endif %}
+	{% if post_date_added_status %}
+    <span><i class="fa fa-clock-o"></i><b class="text">{{ text_posted_on }}</b> <b class="hl">{{ date_added_full }}</b></span>
+    {% endif %}
+	{% if post_page_view_status %} 
+    <span><i class="fa fa-eye"></i><b class="text">{{ text_read }}</b> <b class="hl">{{ new_read_counter_value }}</b></span>
+    {% endif %}
+	{% if post_comments_count_status %}
+    <span><i class="fa fa-comments"></i><b class="text">{{ text_comments }}:</b> <b class="hl">{{ comment_total }}</b></span>
+    {% endif %}
+	</div>
+    
+    <div class="main_description">
+	{{ description }}
+    </div>
+    
+	{% if tags %}
+	<p class="tags">
+	{{ text_tags }}
+	{% for i in 0..tags|length %}
+	{% if i < (tags|length - 1) %} 
+	<a href="{{ tags[i].href }}">{{ tags[i].tag }}</a>,
+	{% else %} 
+	<a href="{{ tags.i.href }}">{{ tags.i.tag }}</a> 
+	{% endif %}
+	{% endfor %} 
+	</p>
+	{% endif %}
+	
+	<div class="share">
+    {% if share_status %} 
+	<div class="addthis_toolbox addthis_default_style">
+	<a class="addthis_button_facebook"><i class="fa fa-facebook"></i></a>
+    <a class="addthis_button_twitter"><i class="fa fa-twitter"></i></a>
+    <a class="addthis_button_google_plusone_share"><i class="fa fa-google-plus"></i></a>
+	<a class="addthis_button_compact"><i class="fa fa-navicon"></i></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+	{% endif %} 
+    </div>
+	
+    
+     
+     {% if related_blogs %} 
+		<h3><i class="fa fa-list"></i>{{ text_related_blog }}</h3>
+		<div class="blog_grid_holder related column-{{ rel_per_row }}">
+          {% for blog in related_blogs %} 
+           <div class="blog_item">
+			<div class="summary">
+				<h2 class="blog_title"><a href="{{ blog.href }}">{{ blog.title }}</a></h2>
+				<div class="blog_stats">
+				{% if author_status %}
+				<span><i class="fa fa-user"></i><b class="text">{{ text_posted_by }}</b> <b class="hl">{{ blog.author }}</b></span>
+				{% endif %} 
+				{% if date_added_status %}
+				<span><i class="fa fa-clock-o"><b class="text"></i>{{ text_posted_on }}</b> <b class="hl">{{ blog.date_added_full }}</b></span>
+				{% endif %} 
+				{% if page_view_status %}
+				<span><i class="fa fa-eye"></i><b class="text">{{ text_read }}</b> <b class="hl">{{ blog.count_read }}</b></span>
+				{% endif %} 
+				{% if comments_count_status %}
+				<span><i class="fa fa-comments"><b class="text"></i>{{ text_comments }}</b> <b class="hl">{{ blog.comment_total }}</b></span>
+				{% endif %} 
+			</div>
+			{% if blog.image and rel_thumb_status %} 
+				<div class="image">
+				<a href="{{ blog.href }}"><img src="{{ blog.image }}" alt="{{ blog.title }}" title="{{ blog.title }}" /></a>
+				
+				</div>
+				
+           
+			{% endif %} 
+			<p>{{ blog.short_description }}</p>
+			<p><a href="{{ blog.href }}">{{ text_read_more }} <i class="fa fa-long-arrow-right"></i></a></p>
+			
+			</div>
+		   </div>
+		{% endfor %}
+	   </div>
+	  {% endif %}
+	 <!-- Related Blog End -->
+	 
+     <!-- Comment Area start -->
+  		{% if allow_comment %} 
+        <h3><i class="fa fa-comments"></i>{{ text_comments }}</h3>
+              <form id="comment_form">
+                <div id="comment"></div>
+                <h3><i class="fa fa-pencil"></i>{{ text_write_comment }}</h3>
+                <div class="row">
+				<div class="form-group col-sm-6 required">
+                <label class="control-label" for="input-name">{{ entry_name }}</label>
+                <input type="text" name="name" value="" id="input-name" class="form-control" />
+                </div>
+                <div class="form-group col-sm-6 required">
+                <label class="control-label" for="input-email">{{ entry_email }}</label>
+                <input type="text" name="email" value="" id="input-email" class="form-control" />
+                </div>
+                </div>
+                
+                <div class="row">
+                <div class="form-group col-sm-12 required">
+                <label class="control-label" for="input-review">{{ entry_comment }}</label>
+                <textarea name="comment" rows="5" id="input-comment" class="form-control"></textarea>
+                </div>
+                </div>
+                
+                <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                  <label class="control-label" for="input-captcha_comment">{{ entry_captcha }}</label>
+                    <div class="input-group">
+                    <span class="input-group-addon captcha_wrap" style="background:#ffffff;padding:0 10px;"><img src="index.php?route=extension/themeblog/blog/captcha" alt="" id="captcha_comment" /></span>
+                    <input type="text" name="captcha_comment" value="" id="input-captcha_comment" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                </div>
+                
+                <div class="row">
+                <div class="form-group col-sm-12 text-right">
+                <button type="button" id="button-comment" class="btn btn-primary">{{ button_send }}</button>
+                </div>
+                </div>
+                </div>
+				</form>
+      {% endif %} 
+      </div>
+      {{ content_bottom }}
+	  </div>
+    {{ column_right }}
+</div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+$('.blog_grid_holder.related').owlCarousel({
+itemsCustom: [ [0, 1], [500, 2], [767, {{ rel_per_row }}]],
+pagination: false,
+navigation:true,
+navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+slideSpeed:500
+}); });
+</script>
+
+<script type="text/javascript"><!--
+
+
+
+$('#comment').delegate('.pagination a', 'click', function(e) {
+  e.preventDefault();
+	$("html,body").animate({scrollTop:(($("#comment").offset().top)-50)},500);
+    $('#comment').fadeOut(50);
+
+    $('#comment').load(this.href);
+
+    $('#comment').fadeIn(500);
+	
+});
+
+$('#comment').load('index.php?route=extension/themeblog/blog/comment&blog_id={{ blog_id }}');
+//--></script>
+
+<script type="text/javascript"><!--
+
+$('#button-comment').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=extension/themeblog/blog/write&blog_id={{ blog_id }}',
+		type: 'post',
+		dataType: 'json',
+		data: $("#comment_form").serialize(),
+		
+		complete: function() {
+			$('#button-comment').button('reset');
+			$('#captcha_comment').attr('src', 'index.php?route=extension/themeblog/blog/captcha#'+new Date().getTime());
+			$('input[name=\'captcha_comment\']').val('');
+		},
+		success: function(json) {
+			$('.alert-success, .alert-danger').remove();
+			
+			if (json['error']) {
+				$('#comment').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+			
+			if (json['success']) {
+				$('#comment').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+				
+				$('input[name=\'name\']').val('');
+				$('input[name=\'email\']').val('');
+				$('textarea[name=\'comment\']').val('');
+				$('input[name=\'captcha_comment\']').val('');
+			}
+		}
+	});
+});    
+</script>
+
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "NewsArticle",
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://google.com/article"
+},
+"headline": "{{ heading_title }}",
+{% if blogsetting_post_thumb %} 
+"image": {
+"@type": "ImageObject",
+"url": "{{ blogsetting_post_thumb }}",
+"height": {{ img_height }},
+"width": {{ img_width }}
+},
+{% endif %} 
+"datePublished": "{{ date_added_full }}",
+"dateModified": "{{ date_added_full }}",
+"author": {
+"@type": "Person",
+"name": "{{ author }}"
+},
+"publisher": {
+"@type": "Organization",
+"name": "{{ store }}",
+{% if logo %} 
+"logo": {
+"@type": "ImageObject",
+"url": "{{ logo }}"
+}
+{% endif %} 
+},
+"description": "{{ short_description }}"
+}
+</script>
+
+
+
+{{ footer }} 

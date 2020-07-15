@@ -1,0 +1,65 @@
+
+</section>
+<footer>
+
+<div id="footer" class="footer container-wapper">
+		      <div class="footer-top">
+		      	
+				      {{ footer_top }}
+			  </div>
+
+			  <div class="footer-center-content">
+			  <div class="row">
+					<div class="footer-left col-md-6 col-lg-6">
+
+					               {{ footer_left }}
+		                  
+								</div>
+
+
+								<div class="footer-right col-md-6 col-lg-6">
+								
+								{% if informations %}
+								<div class="column link-block col-md-6 col-lg-6">
+								<h5>{{ text_information }}</h5>
+								<ul class="list-unstyled">
+								{% for information in informations %}
+								<li><a href="{{ information.href }}"> {{ information.title }}</a></li>
+								{% endfor %}
+		
+								<li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+								</ul>
+								</div>
+								{% endif %}
+								<div class="column link-block col-md-6 col-lg-6">
+		                           {{ footer_right }}
+								   </div>
+                                </div>
+
+			       </div> 
+			    </div>
+            
+             								
+             <div class="footer-bottom"> 
+                     {{ footer_bottom }}
+	                <div class="copyright-container ">	
+						<div class="powered">{{ powered }}</div>
+					</div>
+				    
+              
+			 </div>
+			 
+			  </div>
+</footer>
+  
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+
+{% endfor %}
+
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//--> 
+<!-- Theme created by Welford Media for OpenCart 2.0 www.welfordmedia.co.uk -->
+</body></html>

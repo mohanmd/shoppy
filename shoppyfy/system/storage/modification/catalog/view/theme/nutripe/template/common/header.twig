@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]>
+<html dir="{{ direction }}" lang="{{ lang }}" class="ie8">
+   <![endif]-->
+   <!--[if IE 9 ]>
+   <html dir="{{ direction }}" lang="{{ lang }}" class="ie9">
+      <![endif]-->
+      <!--[if (gt IE 9)|!(IE)]><!-->
+      <html dir="{{ direction }}" lang="{{ lang }}">
+         <!--<![endif]-->
+         <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>{{ title }}</title>
+            <base href="{{ base }}" />
+            {% if description %}
+            <meta name="description" content="{{ description }}" />
+            {% endif %}
+            {% if keywords %}
+            <meta name="keywords" content="{{ keywords }}" />
+            {% endif %}
+            <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+            <!-- <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" /> -->
+            <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js"></script>
+            <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+			
+            <link href="https://fonts.googleapis.com/css?family=Poppins:100,400,500,600,700" rel="stylesheet">
+			
+            <link href="catalog/view/theme/{{ mytemplate }}/stylesheet/stylesheet.css" rel="stylesheet" />
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/{{ mytemplate }}/stylesheet/themecss/lightbox.css" />
+            <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/magnific/magnific-popup.css" />
+            <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/owl-carousel/owl.carousel.css" />
+            <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/owl-carousel/owl.transitions.css" />
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/{{ mytemplate }}/stylesheet/themecss/carousel.css" />
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/{{  mytemplate }}/stylesheet/themecss/custom.css" />
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/{{  mytemplate }}/stylesheet/themecss/bootstrap.min.css" />
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/{{  mytemplate }}/stylesheet/themecss/animate.css" />
+            {% if direction == 'rtl' %}
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/{{ mytemplate }}/stylesheet/themecss/rtl.css">
+            {% endif %}
+            <!-- {% for style in styles %}
+               <link href="style.href" type="text/css" rel="style.rel" media="style.media" />
+               {% endfor %} -->
+            <script src="catalog/view/javascript/lightbox/lightbox-2.6.min.js"></script>
+            {% for style in styles %}
+            <link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+            {% endfor %}
+            {% for script in scripts %}
+            <script src="{{ script }}"></script>
+            {% endfor %}
+            <script src="catalog/view/javascript/common.js" ></script>
+            {% for link in links %}
+            <link href="{{ link.href }}" rel="{{ link.rel }}" />
+            {% endfor %}
+            {% for analytic in analytics %}
+            {{ analytic }}
+            {% endfor %}
+            <!-- Theme Start -->
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/custom.js"></script>
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/jstree.min.js"></script>
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/carousel.min.js"></script>
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/productcarosel.min.js"></script>
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/jquery.custom.min.js"></script>
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/jquery.formalize.min.js"></script>
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/jquery.elevatezoom.min.js"></script>
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/bootstrap-notify.min.js"></script> 
+			<script  type="text/javascript" src="catalog/view/javascript/jquery/flex-slider/js/jquery.flexslider-min.js"></script> 
+            <script  type="text/javascript" src="catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js"></script>
+            <script  type="text/javascript" src="catalog/view/javascript/themejs/owl.carousel.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/magnific/magnific-popup.css" />
+            <script  src="catalog/view/javascript/themejs/tabs.js"></script>
+           
+            <!-- Theme End -->
+            <script src="catalog/view/javascript/common.js" ></script>
+            <script  src="catalog/view/javascript/themejs/parallax.js"></script>
+			
+
+<style type="text/css">
+              body{
+                background:url('{{ background_image }}') no-repeat center!important;
+               {% if config_background_image_position == 'fixed' %}
+                background-attachment: {{ config_background_image_position }} !important;
+                background-size: cover !important;
+                {% endif %}
+                {% if config_background_image_position == 'cover'  %}
+                -webkit-background-size: {{ config_background_image_position }} !important; 
+                -moz-background-size: {{ config_background_image_position }} !important;
+                -o-background-size: {{ config_background_image_position }} !important;
+                background-size: {{ config_background_image_position }} !important;
+                {% endif %}
+              }
+            </style>
+            
+
+			 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/slick/slick.css" />
+			<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/slick/slick-theme.css" />
+			 <script  type="text/javascript" src="catalog/view/javascript/jquery/slick/slick.js"></script>
+
+		 <script  type="text/javascript">
+		 function leftslider(){    
+  // slick carousel
+			 if ($(window).width() >=980)  {
+			 $('#column-left .product-carousel,#column-right .product-carousel').not('.slick-initialized').slick({
+				dots: false,
+				arrows: true,
+				infinite: false,
+				slidesPerRow: 1,
+				rows: 3,
+			  
+			});
+			 }
+			 
+			if ($(window).width() < 980)  {
+			  var lrcolumn = jQuery("#column-left .product-carousel,#column-right .product-carousel");
+				lrcolumn.owlCarousel({
+									 slideBy: 2,
+				});
+			
+			 }
+			}
+			
+			jQuery(window).load(function() {
+					leftslider()
+				});
+				jQuery(window).resize(function() {
+					leftslider()
+				}); </script>
+         </head>
+		 
+         {% if (column_left and column_right) %}
+         {% set layoutclass = 'layout-3' %}
+         {% elseif (column_left or column_right) %}
+         {% if column_left %}
+         {% set layoutclass = 'layout-2 left-col' %}
+         {% elseif column_right %}
+         {% set layoutclass = 'layout-2 right-col' %}
+         {% endif %}
+         {% else %}
+         {% set layoutclass = 'layout-1' %}
+         {% endif %}
+         <body class="{{ class }} {{ " " }} {{ layoutclass }}">
+		 
+         <header class="header">
+
+             <div class="header-wapper">
+			 
+		     <div class="header-nav-wrapper">
+                 <div class="container">  
+                        {{ header_top }} 
+                    <div class="header-nav-left"> </div>
+
+                   <div class="header-nav-right"></div>
+
+	           </div>                           
+         </div>
+
+			<div class="header-content">
+             
+
+         				  <div class="header-logo">
+         					  <div id="logo">
+         						{% if logo %}<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>{% else %}
+         						      <h1><a href="{{ home }}">{{ name }}</a></h1>
+         						{% endif %}
+         					   </div>
+         				   </div>
+
+                        {{ menu }}  
+                            
+							
+                        <div class="header-cart">{{ cart }}</div>
+
+
+                        <div class="dropdown myaccount">
+                        <a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"> 
+					<span class="user-info-image"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                        {% if logged %}
+                        <li><a href="{{ account }}" title="{{ text_account }}">{{ text_account }}</a></li>
+                        <li><a href="{{ order }}" title="{{ text_order }}">{{ text_order }}</a></li>
+                        <li><a href="{{ transaction }}" title="{{ text_transaction }}">{{ text_transaction }}</a></li>
+                        <li><a href="{{ download }}" title="{{ text_download }}">{{ text_download }}</a></li>
+                        <li><a href="{{ logout }}" title="{{ text_logout }}">{{ text_logout }}</a></li>
+                        {% else %}
+                        <li><a href="{{ register }}" title="{{ text_register }}">{{ text_register }}</a></li>
+                        <li><a href="{{ login }}" title="{{ text_login }}">{{ text_login }}</a></li>
+                        {% endif %}
+                        <nav id="top">
+                        <!-- <div class="container"> -->
+                        <div id="top-links" class="nav pull-right">
+                        <ul class="list-inline">
+                        {#  
+                        <li><a href="{{ contact }}"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md">{{ telephone }}</span></li>
+                        #}
+                        <!-- <li class="dropdown myaccount"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><span>{{ text_account }}</span> <span class="caret"><               /span></a>
+                        <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                        {% if logged %}
+                        <li><a href="{{ account }}">{{ text_account }}</a></li>
+                        <li><a href="{{ order }}">{{ text_order }}</a></li>
+                        <li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+                        <li><a href="{{ download }}">{{ text_download }}</a></li>
+                        <li><a href="{{ logout }}">{{ text_logout }}</a></li>
+                        {% else %}
+                        <li><a href="{{ register }}">{{ text_register }}</a></li>
+                        <li><a href="{{ login }}">{{ text_login }}</a></li>
+                        {% endif %}
+                        </ul>
+                        </li> -->
+                     
+                        {# 
+                        <li><a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_shopping_cart }}</span></a></li>
+                        #}
+                        <li><a href="{{ checkout }}" title="{{ text_checkout }}"><span class="checkout">{{ text_checkout }}</span></a></li>
+                        <li><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><span class="wishlist">{{ text_wishlist }}</span></a></li>
+                  
+                        </ul>
+                        </div>
+                        <!-- </div> -->
+                        </nav>
+                         {{ language }}
+                         {{ currency }}
+                         
+                        </ul>
+                        </div>
+
+                        <div class="dropdown search" title="{{ text_search }}">{{ search }}</div> 
+			 		         
+			   </div>
+
+
+			   <div class="header-bottom">
+                        {{ header_bottom }}
+            </div>
+
+            <div class="nav-full-wrapper"></div>
+			</div>
+			<div class="banner-top"></div>
+</header>
+		
+		 <section class="container-wapper">
+		
+			<div id="breadcrumb">
+					<div class="container">
+
+					</div>  
+			</div>
+        
+         <!-- ======= Quick view JS ========= -->
+         <script> 
+            function quickbox(){
+             if ($(window).width() > 767) {
+                $('.quickview').magnificPopup({
+                  type:'iframe',
+                  delegate: 'a',
+                  preloader: true,
+                  tLoading: 'Loading image #%curr%...',
+                });
+             }  
+            }
+            jQuery(document).ready(function() {quickbox();});
+            jQuery(window).resize(function() {quickbox();});
+            
+         </script>

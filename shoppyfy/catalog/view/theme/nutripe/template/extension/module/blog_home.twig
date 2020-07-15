@@ -1,0 +1,49 @@
+<div id="homeblog">
+<div class="blog-module container latest blog box">
+<!-- <h3><a class="all" href="{{ blog_show_all }}">{{ text_show_all }} <i class="fa  fa-long-arrow-right"></i></a>{{ heading_title_latest }}</h3> -->
+<div class="box-heading">{{ heading_title_latest }}</div>
+
+{% if posts %} 
+<div class="box-content">
+<div class="blog_grid_holder latest column-{{ columns }} carousel-{{ carousel }} m{{ module }}">
+{% for blog in posts %} 
+    <div class="blog_item">
+        <div class="summary">
+            
+            
+            {% if blog.image and thumb %} 
+            <div class="image">
+            <a href="{{ blog.href }}"><img src="{{ blog.image }}" alt="{{ blog.title }}" title="{{ blog.title }}" /></a>
+            <p class="post_hover"><a class="icon zoom" title="Click to view Full Image " href="{{ blog.image }}" data-lightbox="example-set"><i class="fa fa-search-plus"></i> </a></p>
+            </div>
+            {% endif %} 
+            {% if not characters == '0' %} 
+            <div class="blog-desc">
+                <!--<div class="blog_stats">
+                     {% if author_status %}
+                    <span><i class="fa fa-user"></i><b class="text">{{ text_posted_by }}</b> <b class="hl">{{ blog.author }}</b></span>
+                    {% endif %} --> 
+                    {% if date_added_status %}
+                    <span><!-- <i class="fa fa-clock-o"><b class="text"></i>{{ text_posted_on }}</b>  --><b class="hl">{{ blog.date_added_full }}</b></span>
+                    {% endif %} 
+                    <!-- {% if page_view_status %}
+                    <span><i class="fa fa-eye"></i><b class="text">{{ text_read }}</b> <b class="hl">{{ blog.count_read }}</b></span>
+                    {% endif %} 
+                    {% if comments_count_status %}
+                    <span><i class="fa fa-comments"><b class="text"></i>{{ text_comments }}</b> <b class="hl">{{ blog.comment_total }}</b></span>
+                    {% endif %}  
+                </div>-->
+                <h2 class="blog_title"><a href="{{ blog.href }}">{{ blog.title }}</a></h2>
+                <p class="desc">{{ blog.description }}</p>
+                <p class="btn_readmore"><a href="{{ blog.href }}">{{ text_read_more }}</a></p>
+            </div>
+            {% endif %} 
+        </div>
+    </div>
+{% endfor %}
+</div>
+</div>
+{% endif %}
+</div>
+</div>
+

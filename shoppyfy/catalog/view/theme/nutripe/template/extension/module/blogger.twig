@@ -1,0 +1,71 @@
+<div id="homeblog">
+
+
+<div class="blog-module latest blog">
+<div class="box-heading">{{ heading_title }}</div> 
+<div class="box">
+	{% set sliderFor = 2 %}
+	{% set blogCount = blogs|length %}
+ 
+
+ <div class="box-content">
+ 
+    <div class="box-product{% if blogCount >= sliderFor %} owl-carousel blog-carousel blog_grid_holder{% else %} box-grid{% endif %}" id="{% if blogCount >= sliderFor %}blog-carousel{% else %}blog-grid{% endif %}">
+	{% for row in blogs|batch(2, 'No item') %}
+
+    <div class="{% if blogCount >= sliderFor %}blog_item{% else %}product-items{% endif %}">
+	 {% for blog in row %}
+	 <div class="blog-wrapper">
+	   <div class="product-block">
+     <div class="summary">
+	
+	 <div class="blog-desc"> 
+	
+		<div class="desc"> <p> {{ blog.description }}  </p></div> 
+		
+		<div class="readmore"><p class="btn_readmore"> <a href="{{ blog.href }}"> {{ text_read_more }}</a> </p></div>
+
+	 </div> 
+	 
+	  {% if blog.image %} 
+	  <div class="blog-left">
+	  
+	  <div class="image">
+	  <img src="{{ blog.image }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" />
+      
+	  </div>
+	   <div class="blog-time-comment">
+			<div class="blog_stats">
+				<div class="date-time"> <b class="hl"> {{ blog.date_added }} </b></div>
+			</div>
+			
+			<h2 class="blog_title"><a href="{{ blog.href }}" title="{{ blog.title }}">{{ blog.title }}</a> </h2>
+			<p class="post_hover"><a class="icon zoom" title="Click to view Full Image " href="{{ blog.image }}" data-lightbox="example-set"><i class="fa fa-search"></i></a></p>
+			<!--<div class="view-blog">
+				<div class="write-comment"><i class="fa fa-comment"></i> <a href="{{ blog.href }}"> {{ blog.total_comments }}  {{ entry_comment }}</a> </div>		
+			</div>-->
+		</div>
+	  </div>
+	 {% endif %} 	
+	 
+    </div>
+	</div>
+	 </div>
+	{% endfor %} 
+	</div>
+	
+    {% endfor %} 	 
+   
+  </div>
+   <!--<div class="buttons text-center">
+      <button type="button" onclick="location='{{ all_blogs }} ';" class="btn btn-primary">{{ button_all_blogs }}</button>
+    </div>-->
+  </div>
+
+
+
+
+</div> 
+</div>
+
+</div>
